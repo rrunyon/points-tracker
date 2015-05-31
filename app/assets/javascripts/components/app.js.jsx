@@ -1,35 +1,27 @@
 var FortyFives = React.createClass({
 
+  getInitialState: function() {
+    return (
+      {
+        teamOne: {
+          tally: [],
+          total: 0
+        },
+        teamTwo: {
+          tally: [],
+          total: 0
+        }
+      }
+    );
+  },
+
   render: function() {
     return (
       <div className='container'>
-        <div className='row'>
-          <div className='col-xs-6 col-md-6 team-header' id='team-1'>
-            Team 1
-          </div>
-          <div className='col-xs-6 col-md-6 team-header' id='team-2'>
-            Team 2
-          </div>
-        </div>
-        <div className='row'>
-          <div className='row'>
-            <div className='col-xs-6 col-md-6'>
-              + 15
-            </div>
-            <div className='col-xs-6 col-md-6'>
-              - 15
-            </div>
-          </div>
-          <div className='row total'>
-            <div className='col-xs-6 col-md-6'>
-              + 15
-            </div>
-            <div className='col-xs-6 col-md-6'>
-              - 15
-            </div>
-          </div>
-          <PointsFooter />
-        </div>
+        <Header />
+        <Tally />
+        <Total />
+        <PointsFooter />
       </div>
     );
   }
