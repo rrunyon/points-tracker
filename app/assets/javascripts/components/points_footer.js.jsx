@@ -60,7 +60,6 @@ var PointsManagerContainer = React.createClass({
   },
 
   render: function() {
-    console.log(this.state.teamOne.value);
     return (
       <div>
         <div className='row'>
