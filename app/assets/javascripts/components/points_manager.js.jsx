@@ -1,15 +1,6 @@
 var PointsManager = React.createClass({
-  getInitialState: function() {
-    return (
-      {
-        value: null
-      }
-    );
-  },
 
-  handleClick: function (e) {
-    e.preventDefault();
-    this.setState({ value: e.target.value });
+  handleClick: function(e) {
   },
 
   normalView: function() {
@@ -56,9 +47,9 @@ var PointsManager = React.createClass({
   },
 
   view: function() {
-    if (this.props.view === 'add') {
+    if (this.props.data.view === 'add') {
       return this.addView();
-    } else if (this.props.view === 'subtract') {
+    } else if (this.props.data.view === 'subtract') {
       return this.subtractView();
     } else {
       return this.normalView();

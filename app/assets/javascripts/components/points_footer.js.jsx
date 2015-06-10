@@ -3,9 +3,14 @@ var PointsManagerContainer = React.createClass({
   getInitialState: function() {
     return (
       {
-        // the state for the values should be in here dummy!@!!!!!!!##$
-        teamOneView: null,
-        teamTwoView: null,
+        teamOne: {
+          view: null,
+          value: null
+        },
+        teamTwo: {
+          view: null,
+          value: null
+        }
       }
     );
   },
@@ -18,15 +23,29 @@ var PointsManagerContainer = React.createClass({
   declareWinner: function(team) {
     if (team === 'teamOne') {
       this.setState({
-        teamOneView: 'add',
-        teamTwoView: 'subtract'
+        teamOne: {
+          view: 'add'
+        },
+        teamTwo: {
+          view: 'subtract'
+        }
       });
     } else {
       this.setState({
-        teamOneView: 'subtract',
-        teamTwoView: 'add'
+        teamOne: {
+          view: 'subtract'
+        },
+        teamTwo: {
+          view: 'add'
+        }
       });
     }    
+  },
+
+  updateValue: function(team, value) {
+    obj = {}
+    obj[team] = value;
+    this.setState(obj);
   },
 
   handleSubmit: function() {
@@ -34,8 +53,8 @@ var PointsManagerContainer = React.createClass({
   },
 
   editButtons: function() {
-    if ((this.state.teamOneView !== null) &&
-        (this.state.teamTwoView !== null)) {
+    if ((this.state.teamOne.view !== null) &&
+        (this.state.teamTwo.view !== null)) {
           return (
             <div className='row'>
               <button className='btn btn-info' onClick={this.handleSubmit}>
@@ -50,15 +69,17 @@ var PointsManagerContainer = React.createClass({
   },
 
   render: function() {
+    console.log(this.state);
     return (
       <div>
-      <div className='row'>
-        <PointsManager team='teamOne' view={this.state.teamOneView}
-                       declareWinner={this.declareWinner} />
-        <PointsManager team='teamTwo' view={this.state.teamTwoView}
-                       declareWinner={this.declareWinner} />
-      </div>
-      {this.editButtons()}
+        <div className='row'>
+          <PointsManager team='teamOne' data={this.state.teamOne}
+                         declareWinner={this.declareWinner}
+                         updateValue={this.updateValue}/>
+          <PointsManager team='teamTwo' data={this.state.teamTwo}
+                         declareWinner={this.declareWinner} />
+        </div>
+        {this.editButtons()}
       </div>
     );
   }
