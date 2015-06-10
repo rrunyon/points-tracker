@@ -15,8 +15,7 @@ var PointsManagerContainer = React.createClass({
     );
   },
 
-  resetState: function(e) {
-    e.preventDefault();
+  resetState: function() {
     this.setState(this.getInitialState());
   },
 
@@ -40,7 +39,8 @@ var PointsManagerContainer = React.createClass({
   },
 
   handleSubmit: function() {
-    this.props.updateScore()    
+    this.props.updateScore(this.state);
+    this.resetState();
   },
 
   editButtons: function() {

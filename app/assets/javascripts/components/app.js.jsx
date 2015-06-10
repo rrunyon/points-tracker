@@ -19,8 +19,17 @@ var FortyFives = React.createClass({
     );
   },
 
-  updateScore: function() {
-    
+  updateScore: function(obj) {
+    state = Immutable.fromJS(this.state);
+    state = state.updateIn(['tally', 'teamOne'],
+                           function(list) {
+                             return list.push(obj.teamOne.value)
+                           });
+    state = state.updateIn(['tally', 'teamTwo'],
+                           function(list) {
+                             return list.push(obj.teamTwo.value)
+                           });
+    this.setState(state.toJS());
   },
 
   render: function() {
