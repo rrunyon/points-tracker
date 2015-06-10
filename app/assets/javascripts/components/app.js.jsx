@@ -3,25 +3,33 @@ var FortyFives = React.createClass({
   getInitialState: function() {
     return (
       {
-        teamOne: {
-          tally: [],
-          total: 0
+        tally: {
+          teamOne: [],
+          teamTwo: []
         },
-        teamTwo: {
-          tally: [],
-          total: 0
+        total: {
+          teamOne: 0,
+          teamTwo: 0
+        },
+        wins: {
+          teamOne: 0,
+          teamTwo: 0
         }
       }
     );
   },
 
+  updateScore: function() {
+    
+  },
+
   render: function() {
     return (
       <div className='container'>
-        <Header />
-        <Tally />
-        <Total />
-        <PointsFooter />
+        <Header wins={this.state.wins} />
+        <Tally tally={this.state.tally} />
+        <Total total={this.state.total} />
+        <PointsManagerContainer updateScore={this.updateScore} />
       </div>
     );
   }
