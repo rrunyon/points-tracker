@@ -13,6 +13,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'react-rails'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-classnames'
+  gem 'rails-assets-immutable' 
+end
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

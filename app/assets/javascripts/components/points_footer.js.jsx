@@ -21,31 +21,22 @@ var PointsManagerContainer = React.createClass({
   },
 
   declareWinner: function(team) {
+    state = Immutable.fromJS(this.state);
     if (team === 'teamOne') {
-      this.setState({
-        teamOne: {
-          view: 'add'
-        },
-        teamTwo: {
-          view: 'subtract'
-        }
-      });
+      state = state.setIn(['teamOne', 'view'], 'add');
+      state = state.setIn(['teamTwo', 'view'], 'subtract');
+      this.setState(state.toJS());
     } else {
-      this.setState({
-        teamOne: {
-          view: 'subtract'
-        },
-        teamTwo: {
-          view: 'add'
-        }
-      });
+      state = state.setIn(['teamOne', 'view'], 'subtract');
+      state = state.setIn(['teamTwo', 'view'], 'add');
+      this.setState(state.toJS());
     }    
   },
 
   updateValue: function(team, value) {
-    obj = {}
-    obj[team] = value;
-    this.setState(obj);
+    state = Immutable.fromJS(this.state);
+    state = state.setIn([team, 'value'], value);
+    this.setState(state.toJS());
   },
 
   handleSubmit: function() {
@@ -69,15 +60,16 @@ var PointsManagerContainer = React.createClass({
   },
 
   render: function() {
-    console.log(this.state);
+    console.log(this.state.teamOne.value);
     return (
       <div>
         <div className='row'>
           <PointsManager team='teamOne' data={this.state.teamOne}
                          declareWinner={this.declareWinner}
-                         updateValue={this.updateValue}/>
+                         updateValue={this.updateValue} />
           <PointsManager team='teamTwo' data={this.state.teamTwo}
-                         declareWinner={this.declareWinner} />
+                         declareWinner={this.declareWinner}
+                         updateValue={this.updateValue} />
         </div>
         {this.editButtons()}
       </div>

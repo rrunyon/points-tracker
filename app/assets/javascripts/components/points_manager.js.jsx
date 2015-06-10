@@ -1,6 +1,8 @@
 var PointsManager = React.createClass({
 
   handleClick: function(e) {
+    e.preventDefault();
+    this.props.updateValue(this.props.team, e.target.value);
   },
 
   normalView: function() {
@@ -16,9 +18,14 @@ var PointsManager = React.createClass({
 
   addView: function() {
     var values = [5, 10, 15, 20, 25, 30]
+
     return (
       <div className='col-xs-6 col-md-6' data-toggle='buttons'>
         {values.map(function(value, i) {
+          var classes = 'btn btn-default';
+          if (this.props.data.value === value) {
+            classes += ' selected';
+          }
           return (
             <button className='btn btn-default' value={value} key={i}
                     onClick={this.handleClick}>
