@@ -4,9 +4,9 @@ var Tally = React.createClass({
     return (
       <div className='row'>
         <div className='col-xs-6 col-md-6'>
-          {this.props.tally.teamOne.map(function(row) {
+          {this.props.tally.teamOne.map(function(row, i) {
             return (
-              <div className='row'>
+              <div className='row' key={i}>
               <span>{row}</span>
               </div>
             );

@@ -22,14 +22,15 @@ var PointsManager = React.createClass({
     return (
       <div className='col-xs-6 col-md-6' data-toggle='buttons'>
         {values.map(function(value, i) {
+          value = "+ " + value
           var classes = 'btn btn-default';
-          if (this.props.data.value == value) {
+          if (this.props.data.value === value) {
             classes += ' selected';
           }
           return (
             <button className={classes} value={value} key={i}
                     onClick={this.handleClick}>
-              {'+ ' + value}
+              {value}
             </button>
           );
          }.bind(this))}
@@ -42,14 +43,15 @@ var PointsManager = React.createClass({
     return (
       <div className='col-xs-6 col-md-6' data-toggle='buttons'>
         {values.map(function(value, i) {
+          value = "- " + value
           var classes = 'btn btn-default';
-          if (this.props.data.value == value) {
+          if (this.props.data.value === value) {
             classes += ' selected';
           }
           return (
             <button className={classes} value={value} key={i}
                     onClick={this.handleClick}>
-              {'- ' + value}
+              {value}
             </button>
           );
          }.bind(this))}

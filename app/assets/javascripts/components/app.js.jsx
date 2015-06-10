@@ -1,7 +1,7 @@
 var FortyFives = React.createClass({
 
   getInitialState: function() {
-    return (
+    return (JSON.parse(localStorage.getItem('state')) ||
       {
         tally: {
           teamOne: [],
@@ -29,7 +29,22 @@ var FortyFives = React.createClass({
                            function(list) {
                              return list.push(obj.teamTwo.value)
                            });
+
+    state = state.updateIn(['total', 'teamOne'],
+                            function(total) {
+                              return eval(total + obj.teamOne.value)
+                            });
+    state = state.updateIn(['total', 'teamTwo'],
+                            function(total) {
+                              return eval(total + obj.teamTwo.value)
+                            });
     this.setState(state.toJS());
+    localStorage.setItem('state', JSON.stringify(state.toJS()));
+  },
+
+  resetGame: function() {
+    localStorage.setItem('state', null);
+    this.setState(this.getInitialState());
   },
 
   render: function() {
@@ -39,6 +54,9 @@ var FortyFives = React.createClass({
         <Tally tally={this.state.tally} />
         <Total total={this.state.total} />
         <PointsManagerContainer updateScore={this.updateScore} />
+        <button className='btn btn-default' onClick={this.resetGame}>
+          Reset
+        </button>
       </div>
     );
   }
