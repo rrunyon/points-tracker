@@ -19,17 +19,36 @@ var PointsManagerContainer = React.createClass({
     this.setState(this.getInitialState());
   },
 
-  declareWinner: function(team) {
+  declareWinner: function(team, view) {
     state = Immutable.fromJS(this.state);
-    if (team === 'teamOne') {
-      state = state.setIn(['teamOne', 'view'], 'add');
-      state = state.setIn(['teamTwo', 'view'], 'subtract');
-      this.setState(state.toJS());
-    } else {
-      state = state.setIn(['teamOne', 'view'], 'subtract');
-      state = state.setIn(['teamTwo', 'view'], 'add');
-      this.setState(state.toJS());
-    }    
+    // if (team === 'teamOne') {
+    //   state = state.setIn(['teamOne', 'view'], 'add');
+    //   state = state.setIn(['teamTwo', 'view'], 'subtract');
+    //   this.setState(state.toJS());
+    // } else {
+    //   state = state.setIn(['teamOne', 'view'], 'subtract');
+    //   state = state.setIn(['teamTwo', 'view'], 'add');
+    //   this.setState(state.toJS());
+    // }
+    if (view === 'subtract') {
+      if (team === 'teamOne') {
+        state = state.setIn(['teamOne', 'view'], 'subtract');
+        state = state.setIn(['teamTwo', 'view'], 'add');
+      } else {
+        state = state.setIn(['teamOne', 'view'], 'add');
+        state = state.setIn(['teamTwo', 'view'], 'subtract');
+      }
+    }
+    if (view === 'add') {
+      if (team === 'teamOne') {
+        state = state.setIn(['teamOne', 'view'], 'add');
+        state = state.setIn(['teamTwo', 'view'], 'hybrid');
+      } else {
+        state = state.setIn(['teamOne', 'view'], 'hybrid');
+        state = state.setIn(['teamTwo', 'view'], 'add');
+      }
+    }
+    this.setState(state.toJS());
   },
 
   updateValue: function(team, value) {
@@ -48,12 +67,16 @@ var PointsManagerContainer = React.createClass({
         (this.state.teamTwo.view !== null)) {
           return (
             <div className='row'>
-              <button className='btn btn-info' onClick={this.handleSubmit}>
-                Submit
-              </button>
-              <button className='btn btn-danger' onClick={this.resetState}>
-                Cancel
-              </button>
+              <div id='edit-buttons'>
+                <button className='btn btn-info'
+                        onClick={this.handleSubmit}>
+                  Submit
+                </button>
+                <button className='btn btn-danger'
+                        onClick={this.resetState}>
+                  Cancel
+                </button>
+              </div>
             </div>
           );
     }

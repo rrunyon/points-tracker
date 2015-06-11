@@ -2,6 +2,11 @@
 @import "bootstrap";
 @import "./**/*";
 
+#reset {
+  position: absolute;
+  bottom: 15px;
+}
+
 .team-header {
   border: 1px solid black;
 }
@@ -12,4 +17,18 @@
 
 .selected {
   background: gray;
+}
+
+.points-button {
+  width: 50px;
+}
+
+#edit-buttons {
+  width: 50%;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  button {
+    width: 50%;
+  }
 }

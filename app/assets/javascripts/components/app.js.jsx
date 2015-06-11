@@ -42,6 +42,9 @@ var FortyFives = React.createClass({
     localStorage.setItem('state', JSON.stringify(state.toJS()));
   },
 
+  updateWins: function() {
+  },
+
   resetGame: function() {
     localStorage.setItem('state', null);
     this.setState(this.getInitialState());
@@ -54,7 +57,8 @@ var FortyFives = React.createClass({
         <Tally tally={this.state.tally} />
         <Total total={this.state.total} />
         <PointsManagerContainer updateScore={this.updateScore} />
-        <button className='btn btn-default' onClick={this.resetGame}>
+        <button className='btn btn-default' id='reset'
+                onClick={this.resetGame}>
           Reset
         </button>
       </div>
