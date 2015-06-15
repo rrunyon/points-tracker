@@ -20,6 +20,7 @@ var FortyFives = React.createClass({
   },
 
   updateScore: function(obj) {
+    console.log(this.state);
     state = Immutable.fromJS(this.state);
     state = state.updateIn(['tally', 'teamOne'],
                            function(list) {
@@ -42,7 +43,21 @@ var FortyFives = React.createClass({
     localStorage.setItem('state', JSON.stringify(state.toJS()));
   },
 
-  updateWins: function() {
+  // TODO: is Immutable necessary here?
+  updateWins: function(team) {
+    state = Immutable.fromJS(this.state);
+    state = state.updateIn(['wins', team],
+                            function(total) {
+                              return total + 1;
+                            });
+    
+    state = state.setIn(['tally', 'teamOne'], []);
+    state = state.setIn(['tally', 'teamTwo'], []);
+    state = state.setIn(['total', 'teamOne'], 0);
+    state = state.setIn(['total', 'teamTwo'], 0);
+
+    this.setState(state.toJS());
+    localStorage.setItem('state', JSON.stringify(state.toJS()));
   },
 
   resetGame: function() {
@@ -53,7 +68,7 @@ var FortyFives = React.createClass({
   render: function() {
     return (
       <div className='container'>
-        <Header wins={this.state.wins} />
+        <Header wins={this.state.wins} updateWins={this.updateWins} />
         <Tally tally={this.state.tally} />
         <Total total={this.state.total} />
         <PointsManagerContainer updateScore={this.updateScore} />

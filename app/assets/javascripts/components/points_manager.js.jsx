@@ -66,7 +66,7 @@ var PointsManager = React.createClass({
   },
 
   hybridView: function() {
-    var values = ['- 15', '- 20', '- 25', '- 30',
+    var values = ['0', '- 15', '- 20', '- 25', '- 30',
                   '+ 5', '+ 10', '+ 15', '+ 20',
                   '+ 25', '+ 30']
     return (
