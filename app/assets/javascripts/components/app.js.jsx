@@ -1,7 +1,7 @@
 var FortyFives = React.createClass({
 
   getInitialState: function() {
-    return (JSON.parse(localStorage.getItem('state')) ||
+    return (JSON.parse(localStorage.getItem('points-tracker-state')) ||
       {
         tally: {
           teamOne: [],
@@ -40,7 +40,7 @@ var FortyFives = React.createClass({
                               return eval(total + obj.teamTwo.value)
                             });
     this.setState(state.toJS());
-    localStorage.setItem('state', JSON.stringify(state.toJS()));
+    localStorage.setItem('points-trackerstate', JSON.stringify(state.toJS()));
   },
 
   // TODO: is Immutable necessary here?
@@ -57,7 +57,7 @@ var FortyFives = React.createClass({
     state = state.setIn(['total', 'teamTwo'], 0);
 
     this.setState(state.toJS());
-    localStorage.setItem('state', JSON.stringify(state.toJS()));
+    localStorage.setItem('points-tracker-state', JSON.stringify(state.toJS()));
   },
 
   resetGame: function() {
