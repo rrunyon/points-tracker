@@ -33,10 +33,16 @@ var FortyFives = React.createClass({
 
     state = state.updateIn(['total', 'teamOne'],
                             function(total) {
+                              if (obj.teamOne.value === '0') {
+                                obj.teamOne.value = 0;
+                              }
                               return eval(total + obj.teamOne.value)
                             });
     state = state.updateIn(['total', 'teamTwo'],
                             function(total) {
+                              if (obj.teamTwo.value === '0') {
+                                obj.teamTwo.value = 0;
+                              }
                               return eval(total + obj.teamTwo.value)
                             });
     this.setState(state.toJS());
