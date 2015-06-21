@@ -2,6 +2,10 @@
 @import "bootstrap";
 @import "./**/*";
 
+.container {
+  font-family: 'Open Sans', sans-serif;
+}
+
 #reset {
   position: absolute;
   bottom: 15px;
@@ -34,6 +38,5 @@
 }
 
 .win-button {
-  positions: absolute;
-  right: 0px;
+  float: right;
 }
