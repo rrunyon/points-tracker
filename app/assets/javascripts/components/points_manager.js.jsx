@@ -8,12 +8,12 @@ var PointsManager = React.createClass({
   normalView: function() {
     return (
       <div className='col-xs-6 col-md-6'>
-        <button className='btn btn-default'
+        <button className='btn btn-default btn-lg'
                 onClick={this.props.declareWinner.bind(
                          null, this.props.team, 'add')}>
           <span>+</span>
         </button>
-        <button className='btn btn-default'
+        <button className='btn btn-default btn-lg'
                 onClick={this.props.declareWinner.bind(
                          null, this.props.team, 'subtract')}>
           <span>-</span>
@@ -23,52 +23,23 @@ var PointsManager = React.createClass({
   },
 
   addView: function() {
-    var values = [5, 10, 15, 20, 25, 30]
-
-    return (
-      <div className='col-xs-6 col-md-6' data-toggle='buttons'>
-        {values.map(function(value, i) {
-          value = "+ " + value
-          var classes = 'btn btn-default points-button';
-          if (this.props.data.value === value) {
-            classes += ' selected';
-          }
-          return (
-            <button className={classes} value={value} key={i} type='submit'
-                    onClick={this.handleClick}>
-              {value}
-            </button>
-          );
-         }.bind(this))}
-      </div>
-    );
+    var values = ['+ 5', '+ 10', '+ 15', '+ 20', '+ 25', '+ 30']
+    return this._generateView(values);
   },
 
   subtractView: function() {
-    var values = [5, 10, 15, 20, 25, 30]
-    return (
-      <div className='col-xs-6 col-md-6' data-toggle='buttons'>
-        {values.map(function(value, i) {
-          value = "- " + value
-          var classes = 'btn btn-default points-button';
-          if (this.props.data.value === value) {
-            classes += ' selected';
-          }
-          return (
-            <button className={classes} value={value} key={i} type='submit'
-                    onClick={this.handleClick}>
-              {value}
-            </button>
-          );
-         }.bind(this))}
-      </div>
-    );
+    var values = ['- 5', '- 10', '- 15', '- 20', '- 25', '- 30']
+    return this._generateView(values);
   },
 
   hybridView: function() {
     var values = ['0', '- 15', '- 20', '- 25', '- 30',
                   '+ 5', '+ 10', '+ 15', '+ 20',
                   '+ 25', '+ 30']
+    return this._generateView(values);
+  },
+
+  _generateView: function(values) {
     return (
       <div className='col-xs-6 col-md-6' data-toggle='buttons'>
         {values.map(function(value, i) {
