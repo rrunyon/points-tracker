@@ -43,7 +43,7 @@ var PointsManager = React.createClass({
     return (
       <div className='col-xs-6 col-md-6' data-toggle='buttons'>
         {values.map(function(value, i) {
-          var classes = 'btn btn-default points-button';
+          var classes = 'btn btn-default btn-lg points-button';
           if (this.props.data.value === value) {
             classes += ' selected';
           }
