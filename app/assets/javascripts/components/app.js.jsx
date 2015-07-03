@@ -1,4 +1,4 @@
-var FortyFives = React.createClass({
+var App = React.createClass({
 
   getInitialState: function() {
     return (JSON.parse(localStorage.getItem('points-tracker-state')) ||
