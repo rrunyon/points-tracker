@@ -1,3 +1,19 @@
+var GameValues = {
+  fortyfives: {
+    add: ['+ 5', '+ 10', '+ 15', '+ 20', '+ 25', '+ 30'],
+    subtract: ['- 5', '- 10', '- 15', '- 20', '- 25', '- 30'],
+    hybrid: ['0', '- 15', '- 20', '- 25', '- 30',
+             '+ 5', '+ 10', '+ 15', '+ 20',
+             '+ 25', '+ 30']
+  },
+  pitch: {
+    add: ['+ 1', '+ 2', '+ 3', '+ 4'],
+    subtract: ['- 2', '- 3', '- 4'],
+    hybrid: ['0', '- 2', '- 3', '- 4',
+             '+ 1', '+ 2', '+ 3', '+ 4']
+   },
+}
+
 var PointsManager = React.createClass({
 
   handleClick: function(e) {
@@ -23,20 +39,15 @@ var PointsManager = React.createClass({
   },
 
   addView: function() {
-    var values = ['+ 5', '+ 10', '+ 15', '+ 20', '+ 25', '+ 30']
-    return this._generateView(values);
+    return this._generateView(GameValues[this.props.game].add);
   },
 
   subtractView: function() {
-    var values = ['- 5', '- 10', '- 15', '- 20', '- 25', '- 30']
-    return this._generateView(values);
+    return this._generateView(GameValues[this.props.game].subtract);
   },
 
   hybridView: function() {
-    var values = ['0', '- 15', '- 20', '- 25', '- 30',
-                  '+ 5', '+ 10', '+ 15', '+ 20',
-                  '+ 25', '+ 30']
-    return this._generateView(values);
+    return this._generateView(GameValues[this.props.game].hybrid);
   },
 
   _generateView: function(values) {

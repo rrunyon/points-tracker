@@ -79,10 +79,14 @@ var PointsManagerContainer = React.createClass({
         <div className='row'>
           <PointsManager team='teamOne' data={this.state.teamOne}
                          declareWinner={this.declareWinner}
-                         updateValue={this.updateValue} />
+                         updateValue={this.updateValue}
+                         game={this.props.game}
+          />
           <PointsManager team='teamTwo' data={this.state.teamTwo}
                          declareWinner={this.declareWinner}
-                         updateValue={this.updateValue} />
+                         updateValue={this.updateValue}
+                         game={this.props.game}
+         />
         </div>
         {this.editButtons()}
       </div>

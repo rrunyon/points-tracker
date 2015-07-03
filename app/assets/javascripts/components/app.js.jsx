@@ -1,7 +1,8 @@
 var App = React.createClass({
 
   getInitialState: function() {
-    return (JSON.parse(localStorage.getItem('points-tracker-state')) ||
+    return (JSON.parse(localStorage.getItem(
+      this.props.game + '-points-tracker-state')) ||
       {
         tally: {
           teamOne: [],
@@ -46,7 +47,8 @@ var App = React.createClass({
                               return eval(total + obj.teamTwo.value)
                             });
     this.setState(state.toJS());
-    localStorage.setItem('points-trackerstate', JSON.stringify(state.toJS()));
+    localStorage.setItem(
+      this.props.game + '-points-tracker-state', JSON.stringify(state.toJS()));
   },
 
   // TODO: is Immutable necessary here?
@@ -63,11 +65,12 @@ var App = React.createClass({
     state = state.setIn(['total', 'teamTwo'], 0);
 
     this.setState(state.toJS());
-    localStorage.setItem('points-tracker-state', JSON.stringify(state.toJS()));
+    localStorage.setItem(
+      this.props.game + '-points-tracker-state', JSON.stringify(state.toJS()));
   },
 
   resetGame: function() {
-    localStorage.setItem('state', null);
+    localStorage.setItem(this.props.game + '-points-tracker-state', null);
     this.setState(this.getInitialState());
   },
 
@@ -77,7 +80,8 @@ var App = React.createClass({
         <Header wins={this.state.wins} updateWins={this.updateWins} />
         <Tally tally={this.state.tally} />
         <Total total={this.state.total} />
-        <PointsManagerContainer updateScore={this.updateScore} />
+        <PointsManagerContainer updateScore={this.updateScore}
+                                game={this.props.game}/>
         <button className='btn btn-default' id='reset'
                 onClick={this.resetGame}>
           Reset
