@@ -13,9 +13,15 @@
   }
 }
 
-#reset {
+#reset-game {
   position: absolute;
   bottom: 15px;
+}
+
+#reset-wins {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
 }
 
 .team-header {

@@ -70,8 +70,27 @@ var App = React.createClass({
   },
 
   resetGame: function() {
-    localStorage.setItem(this.props.game + '-points-tracker-state', null);
-    this.setState(this.getInitialState());
+    
+    state = Immutable.fromJS(this.state);
+    state = state.setIn(['tally', 'teamOne'], []);
+    state = state.setIn(['tally', 'teamTwo'], []);
+    state = state.setIn(['total', 'teamOne'], 0);
+    state = state.setIn(['total', 'teamTwo'], 0);
+
+    localStorage.setItem(this.props.game + '-points-tracker-state',
+                         JSON.stringify(state.toJS()));
+    this.setState(state.toJS());
+  },
+
+  resetWins: function() {
+    
+    state = Immutable.fromJS(this.state);
+    state = state.setIn(['wins', 'teamOne'], 0);
+    state = state.setIn(['wins', 'teamTwo'], 0);
+
+    localStorage.setItem(this.props.game + '-points-tracker-state',
+                         JSON.stringify(state.toJS()));
+    this.setState(state.toJS());
   },
 
   render: function() {
@@ -82,9 +101,13 @@ var App = React.createClass({
         <Total total={this.state.total} />
         <PointsManagerContainer updateScore={this.updateScore}
                                 game={this.props.game}/>
-        <button className='btn btn-default' id='reset'
+        <button className='btn btn-default' id='reset-game'
                 onClick={this.resetGame}>
-          Reset
+          Reset Game
+        </button>
+        <button className='btn btn-default' id='reset-wins'
+                onClick={this.resetWins}>
+          Reset Wins
         </button>
       </div>
     );
