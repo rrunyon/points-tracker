@@ -6,8 +6,8 @@ var Tally = React.createClass({
         <div className='col-xs-6 col-md-6'>
           {this.props.tally.teamOne.map(function(row, i) {
             return (
-              <div className='row' key={i}>
-              <span>{row}</span>
+              <div className='row col-xs-12 col-md-12' key={i}>
+                <span>{row}</span>
               </div>
             );
            })}
@@ -15,7 +15,7 @@ var Tally = React.createClass({
         <div className='col-xs-6 col-md-6'>
           {this.props.tally.teamTwo.map(function(row, i) {
             return (
-              <div className='row' key={i}>
+              <div className='row col-xs-12 col-md-12' key={i}>
                 <span>{row}</span>
               </div>
             );
