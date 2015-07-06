@@ -17,5 +17,6 @@
 //= require react_ujs
 //= require classnames
 //= require immutable
+//= require fastclick
 //= require components
 //= require_tree .
