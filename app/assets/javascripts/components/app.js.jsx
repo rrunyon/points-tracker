@@ -20,6 +20,12 @@ var App = React.createClass({
     );
   },
 
+  componentDidMount: function () {
+    window.addEventListener('load', function () {
+      FastClick.attach(document.body);
+    });
+  },
+
   updateScore: function(obj) {
     console.log(this.state);
     state = Immutable.fromJS(this.state);

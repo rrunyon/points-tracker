@@ -14,7 +14,8 @@ gem 'react-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-classnames'
-  gem 'rails-assets-immutable' 
+  gem 'rails-assets-immutable'
+  gem 'rails-assets-fastclick'
 end
 
 group :development, :test do
