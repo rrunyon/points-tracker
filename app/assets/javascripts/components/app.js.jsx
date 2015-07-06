@@ -1,3 +1,7 @@
+window.addEventListener('load', function () {
+  FastClick.attach(document.body);
+});
+
 var App = React.createClass({
 
   getInitialState: function() {
@@ -18,12 +22,6 @@ var App = React.createClass({
         }
       }
     );
-  },
-
-  componentDidMount: function () {
-    window.addEventListener('load', function () {
-      FastClick.attach(document.body);
-    });
   },
 
   updateScore: function(obj) {
