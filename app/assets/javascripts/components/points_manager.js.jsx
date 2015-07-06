@@ -1,16 +1,11 @@
 var GameValues = {
   fortyfives: {
     add: ['+ 5', '+ 10', '+ 15', '+ 20', '+ 25', '+ 30'],
-    subtract: ['- 15', '- 20', '- 25', '- 30'],
-    hybrid: ['0', '- 15', '- 20', '- 25', '- 30',
-             '+ 5', '+ 10', '+ 15', '+ 20',
-             '+ 25', '+ 30']
+    subtract: ['- 15', '- 20', '- 25', '- 30']
   },
   pitch: {
     add: ['+ 1', '+ 2', '+ 3', '+ 4'],
-    subtract: ['- 2', '- 3', '- 4'],
-    hybrid: ['0', '- 2', '- 3', '- 4',
-             '+ 1', '+ 2', '+ 3', '+ 4']
+    subtract: ['- 2', '- 3', '- 4']
    },
 }
 
@@ -23,7 +18,7 @@ var PointsManager = React.createClass({
 
   normalView: function() {
     return (
-      <div className='col-xs-6 col-md-6'>
+      <div className='col-xs-6 col-md-6 add-sub-buttons'>
         <button className='btn btn-default btn-lg'
                 onClick={this.props.declareWinner.bind(
                          null, this.props.team, 'add')}>
@@ -47,7 +42,7 @@ var PointsManager = React.createClass({
   },
 
   hybridView: function() {
-    return this._generateView(GameValues[this.props.game].hybrid);
+    return this._generateHybridView();
   },
 
   _generateView: function(values) {
@@ -68,6 +63,45 @@ var PointsManager = React.createClass({
       </div>
     );
   },
+
+  _generateHybridView: function() {
+    var negValues = GameValues[this.props.game].subtract;
+    negValues.unshift('0');
+    var posValues = GameValues[this.props.game].add;
+    return (
+      <div className='col-xs-6 col-md-6'>
+        <div className='col-xs-6 col-md-6 no-pad' data-toggle='buttons'>
+          {negValues.map(function(value, i) {
+            var classes = 'btn btn-default btn-lg points-button';
+            if (this.props.data.value === value) {
+              classes += ' selected';
+            }
+            return (
+              <button className={classes} value={value} key={i} type='submit'
+                      onClick={this.handleClick}>
+                {value}
+              </button>
+            );
+           }.bind(this))}
+        </div>
+        <div className='col-xs-6 col-md-6 no-pad' data-toggle='buttons'>
+          {posValues.map(function(value, i) {
+            var classes = 'btn btn-default btn-lg points-button';
+            if (this.props.data.value === value) {
+              classes += ' selected';
+            }
+            return (
+              <button className={classes} value={value} key={i} type='submit'
+                      onClick={this.handleClick}>
+                {value}
+              </button>
+            );
+           }.bind(this))}
+        </div>
+      </div>
+    );
+  },
+
 
   view: function() {
     if (this.props.data.view === 'add') {

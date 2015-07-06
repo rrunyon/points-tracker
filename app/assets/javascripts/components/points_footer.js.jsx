@@ -57,7 +57,7 @@ var PointsManagerContainer = React.createClass({
     if ((this.state.teamOne.view !== null) &&
         (this.state.teamTwo.view !== null)) {
           return (
-            <div className='row'>
+            <div className='col-xs-12 col-md-12'>
               <div id='edit-buttons'>
                 <button className='btn btn-info'
                         onClick={this.handleSubmit}>
@@ -88,7 +88,9 @@ var PointsManagerContainer = React.createClass({
                          game={this.props.game}
          />
         </div>
-        {this.editButtons()}
+        <div className='row'>
+          {this.editButtons()}
+        </div>
       </div>
     );
   }
