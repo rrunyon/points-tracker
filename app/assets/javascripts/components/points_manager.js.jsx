@@ -65,39 +65,13 @@ var PointsManager = React.createClass({
   },
 
   _generateHybridView: function() {
-    var negValues = GameValues[this.props.game].subtract;
+    var negValues = GameValues[this.props.game].subtract.slice(0);
     negValues.unshift('0');
     var posValues = GameValues[this.props.game].add;
     return (
-      <div className='col-xs-6 col-md-6'>
-        <div className='col-xs-6 col-md-6 no-pad' data-toggle='buttons'>
-          {negValues.map(function(value, i) {
-            var classes = 'btn btn-default btn-lg points-button';
-            if (this.props.data.value === value) {
-              classes += ' selected';
-            }
-            return (
-              <button className={classes} value={value} key={i} type='submit'
-                      onClick={this.handleClick}>
-                {value}
-              </button>
-            );
-           }.bind(this))}
-        </div>
-        <div className='col-xs-6 col-md-6 no-pad' data-toggle='buttons'>
-          {posValues.map(function(value, i) {
-            var classes = 'btn btn-default btn-lg points-button';
-            if (this.props.data.value === value) {
-              classes += ' selected';
-            }
-            return (
-              <button className={classes} value={value} key={i} type='submit'
-                      onClick={this.handleClick}>
-                {value}
-              </button>
-            );
-           }.bind(this))}
-        </div>
+      <div className='col-xs-6 col-md-6 no-pad'>
+        {this._generateView(negValues)}
+        {this._generateView(posValues)}
       </div>
     );
   },

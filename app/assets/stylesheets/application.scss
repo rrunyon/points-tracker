@@ -47,7 +47,9 @@
 }
 
 .no-pad {
-  padding: 0;
+  div {
+    padding: 0;
+  }
 }
 
 .points-button {
