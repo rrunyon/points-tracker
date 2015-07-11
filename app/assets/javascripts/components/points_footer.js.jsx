@@ -20,7 +20,7 @@ var PointsManagerContainer = React.createClass({
   },
 
   declareWinner: function(team, view) {
-    state = Immutable.fromJS(this.state);
+    var state = Immutable.fromJS(this.state);
     if (view === 'subtract') {
       if (team === 'teamOne') {
         state = state.setIn(['teamOne', 'view'], 'subtract');
@@ -43,7 +43,7 @@ var PointsManagerContainer = React.createClass({
   },
 
   updateValue: function(team, value) {
-    state = Immutable.fromJS(this.state);
+    var state = Immutable.fromJS(this.state);
     state = state.setIn([team, 'value'], value);
     this.setState(state.toJS());
   },

@@ -25,8 +25,7 @@ var App = React.createClass({
   },
 
   updateScore: function(obj) {
-    console.log(this.state);
-    state = Immutable.fromJS(this.state);
+    var state = Immutable.fromJS(this.state);
     state = state.updateIn(['tally', 'teamOne'],
                            function(list) {
                              return list.push(obj.teamOne.value)
@@ -57,7 +56,7 @@ var App = React.createClass({
 
   // TODO: is Immutable necessary here?
   updateWins: function(team) {
-    state = Immutable.fromJS(this.state);
+    var state = Immutable.fromJS(this.state);
     state = state.updateIn(['wins', team],
                             function(total) {
                               return total + 1;
@@ -74,8 +73,7 @@ var App = React.createClass({
   },
 
   resetGame: function() {
-    
-    state = Immutable.fromJS(this.state);
+    var state = Immutable.fromJS(this.state);
     state = state.setIn(['tally', 'teamOne'], []);
     state = state.setIn(['tally', 'teamTwo'], []);
     state = state.setIn(['total', 'teamOne'], 0);
@@ -87,8 +85,7 @@ var App = React.createClass({
   },
 
   resetWins: function() {
-    
-    state = Immutable.fromJS(this.state);
+    var state = Immutable.fromJS(this.state);
     state = state.setIn(['wins', 'teamOne'], 0);
     state = state.setIn(['wins', 'teamTwo'], 0);
 
