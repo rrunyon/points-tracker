@@ -53,16 +53,35 @@ var PointsManagerContainer = React.createClass({
     this.resetState();
   },
 
+  readyForSubmit: function () {
+    return (this.state.teamOne.value !== null &&
+            this.state.teamTwo.value !== null);
+  },
+
+  submitButton: function () {
+    if (this.readyForSubmit() === true) {
+      return (
+        <button className='btn btn-info'
+                onClick={this.handleSubmit}>
+          Submit
+        </button>
+      );
+    } else {
+      return (
+        <button className='btn disabled'>
+          Submit
+        </button>
+      );
+    }
+  },
+
   editButtons: function() {
     if ((this.state.teamOne.view !== null) &&
         (this.state.teamTwo.view !== null)) {
           return (
             <div className='col-xs-12 col-md-12'>
               <div id='edit-buttons'>
-                <button className='btn btn-info'
-                        onClick={this.handleSubmit}>
-                  Submit
-                </button>
+                {this.submitButton()}
                 <button className='btn btn-danger'
                         onClick={this.resetState}>
                   Cancel
