@@ -19,7 +19,8 @@ var App = React.createClass({
         wins: {
           teamOne: 0,
           teamTwo: 0
-        }
+        },
+        pointing: false
       }
     );
   },
@@ -94,14 +95,27 @@ var App = React.createClass({
     this.setState(state.toJS());
   },
 
+  isPointing: function(bool) {
+    this.setState({ pointing: bool });
+  },
+
+  tally: function () {
+    if (this.state.pointing === true) {
+      return;
+    } else {
+      return <Tally tally={this.state.tally} />;
+    }
+  },
+
   render: function() {
     return (
       <div className='container'>
         <Header wins={this.state.wins} updateWins={this.updateWins} />
-        <Tally tally={this.state.tally} />
+        {this.tally()}
         <Total total={this.state.total} />
         <PointsManagerContainer updateScore={this.updateScore}
-                                game={this.props.game}/>
+                                game={this.props.game}
+                                isPointing={this.isPointing} />
         <button className='btn btn-default' id='reset-game'
                 onClick={this.resetGame}>
           Reset Game

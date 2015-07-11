@@ -39,6 +39,7 @@ var PointsManagerContainer = React.createClass({
         state = state.setIn(['teamTwo', 'view'], 'add');
       }
     }
+    this.props.isPointing(true);
     this.setState(state.toJS());
   },
 
@@ -50,6 +51,7 @@ var PointsManagerContainer = React.createClass({
 
   handleSubmit: function() {
     this.props.updateScore(this.state);
+    this.props.isPointing(false);
     this.resetState();
   },
 
@@ -100,11 +102,13 @@ var PointsManagerContainer = React.createClass({
                          declareWinner={this.declareWinner}
                          updateValue={this.updateValue}
                          game={this.props.game}
+                         isPointing={this.props.isPointing}
           />
           <PointsManager team='teamTwo' data={this.state.teamTwo}
                          declareWinner={this.declareWinner}
                          updateValue={this.updateValue}
                          game={this.props.game}
+                         isPointing={this.props.isPointing}
          />
         </div>
         <div className='row'>
