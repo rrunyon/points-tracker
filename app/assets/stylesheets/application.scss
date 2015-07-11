@@ -67,8 +67,8 @@
   }
   // hack for iOS
   .disabled {
+    opacity: inherit;
     visibility: visible;
-    opacity: 1;
   }
 }
 
