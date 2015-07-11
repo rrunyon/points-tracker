@@ -65,9 +65,9 @@
   button {
     width: 50%;
   }
-  // this should happen by default but it isn't showing on mobile
+  // hack for iOS
   .disabled {
-    color: #D6D6D6
+    visibility: visible;
   }
 }
 
