@@ -16,6 +16,7 @@ var PointsManagerContainer = React.createClass({
   },
 
   resetState: function() {
+    this.props.isPointing(false);
     this.setState(this.getInitialState());
   },
 
