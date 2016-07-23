@@ -62,7 +62,7 @@ var App = React.createClass({
                             function(total) {
                               return total + 1;
                             });
-    
+
     state = state.setIn(['tally', 'teamOne'], []);
     state = state.setIn(['tally', 'teamTwo'], []);
     state = state.setIn(['total', 'teamOne'], 0);
@@ -74,6 +74,9 @@ var App = React.createClass({
   },
 
   resetGame: function() {
+    var confirm = window.confirm('Are you sure you want to reset the game?')
+    if (!confirm) { return; }
+
     var state = Immutable.fromJS(this.state);
     state = state.setIn(['tally', 'teamOne'], []);
     state = state.setIn(['tally', 'teamTwo'], []);
@@ -86,6 +89,9 @@ var App = React.createClass({
   },
 
   resetWins: function() {
+    var confirm = window.confirm('Are you sure you want to reset the wins?')
+    if (!confirm) { return; }
+
     var state = Immutable.fromJS(this.state);
     state = state.setIn(['wins', 'teamOne'], 0);
     state = state.setIn(['wins', 'teamTwo'], 0);
