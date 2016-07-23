@@ -57,6 +57,9 @@ var App = React.createClass({
 
   // TODO: is Immutable necessary here?
   updateWins: function(team) {
+    var confirm = window.confirm('Are you sure you want to end the game?')
+    if (!confirm) { return; }
+        
     var state = Immutable.fromJS(this.state);
     state = state.updateIn(['wins', team],
                             function(total) {
